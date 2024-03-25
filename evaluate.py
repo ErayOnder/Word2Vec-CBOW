@@ -14,23 +14,6 @@ from src.tokenizer import CharacterTrigrams
 
 def load_embeddings(*args, **kwargs):
     tokenizer_name = args[0]
-    file_name = tokenizer_name + "_embeddings.txt"
-    input_file = os.path.join("embeddings", file_name)
-    vocab = {}
-    embeddings = []
-    with open(input_file, 'r') as f:
-        for index, line in enumerate(f):
-            parts = line.strip().split()
-            word = parts[0]
-            vector = [float(v) for v in parts[1:]]
-            vocab[word] = index
-            embeddings.append(vector)
-
-    embeddings_tensor = torch.tensor(embeddings)
-    return embeddings_tensor, vocab
-
-def load_embeddings_from_pt(*args, **kwargs):
-    tokenizer_name = args[0]
     embed_file_name = tokenizer_name + "_latest_embeddings.pt"
     embed_file_path = os.path.join("embeddings", embed_file_name)
 
